@@ -39,10 +39,10 @@ namespace Library.Infra.Auth
 
         public string GenerateJwtToken(int userId,EUserRole role)
         {
-            var issuer = _configuration["Jwt:Issuer"];
-            var audience = _configuration["Jwt:Audience"];
+            var issuer = _configuration["Jwt_Issuer"];
+            var audience = _configuration["Jwt_Audience"];
 
-            var securityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["Jwt:Key"]));
+            var securityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["Jwt_Key"]));
             var credentials = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha256);
 
             var claims = new List<Claim>

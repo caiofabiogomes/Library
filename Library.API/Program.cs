@@ -61,10 +61,10 @@ builder.Services.AddControllers(options => options.Filters.Add(typeof(Validation
                           ValidateLifetime = true,
                           ValidateIssuerSigningKey = true,
 
-                          ValidIssuer = builder.Configuration["Jwt:Issuer"],
-                          ValidAudience = builder.Configuration["Jwt:Audience"],
+                          ValidIssuer = builder.Configuration["Jwt_Issuer"],
+                          ValidAudience = builder.Configuration["Jwt_Audience"],
                           IssuerSigningKey = new SymmetricSecurityKey
-                        (Encoding.UTF8.GetBytes(builder.Configuration["Jwt:Key"]))
+                        (Encoding.UTF8.GetBytes(builder.Configuration["Jwt_Key"]))
                       };
                   });
 builder.Services.AddEndpointsApiExplorer();
