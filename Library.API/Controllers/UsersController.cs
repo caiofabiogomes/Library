@@ -34,12 +34,20 @@ namespace Library.API.Controllers
         [AllowAnonymous]
         public async Task<IActionResult> Login([FromBody] LoginUserCommand command)
         {
-            var loginUserviewModel = await _mediator.Send(command);
+            try 
+            {
+                var loginUserviewModel = await _mediator.Send(command);
 
-            if (!loginUserviewModel.IsFound) 
-                return BadRequest("Email ou senha incorretos!"); 
+                if (!loginUserviewModel.IsFound)
+                    return BadRequest("Email ou senha incorretos!");
 
-            return Ok(loginUserviewModel);
+                return Ok(loginUserviewModel);
+            }
+            catch (Exception ex) 
+            {
+                throw ex;
+            }
+            
         }
 
 
