@@ -11,7 +11,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Library.Infra", "Library.In
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Library.Application", "Library.Application\Library.Application.csproj", "{5213EF69-8CC4-48D0-BC32-3308792A700C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Library.UnitTests", "Library.UnitTests\Library.UnitTests.csproj", "{A99BF2EA-D620-4ECD-B45E-A942B9D5F434}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Library.UnitTests", "Library.UnitTests\Library.UnitTests.csproj", "{A99BF2EA-D620-4ECD-B45E-A942B9D5F434}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "LibraryPayment", "LibraryPayment", "{2E8FEFAA-00FE-44AA-884B-CB0753118AC1}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -42,6 +44,13 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{92870EAB-6ECE-45B9-8083-D1C9ED240925} = {2E8FEFAA-00FE-44AA-884B-CB0753118AC1}
+		{83494FB1-0104-4974-9FE5-2BA80A4F899E} = {2E8FEFAA-00FE-44AA-884B-CB0753118AC1}
+		{6A10E89A-55EE-4128-AE67-946B7586B515} = {2E8FEFAA-00FE-44AA-884B-CB0753118AC1}
+		{5213EF69-8CC4-48D0-BC32-3308792A700C} = {2E8FEFAA-00FE-44AA-884B-CB0753118AC1}
+		{A99BF2EA-D620-4ECD-B45E-A942B9D5F434} = {2E8FEFAA-00FE-44AA-884B-CB0753118AC1}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {92B626B4-A4F7-4865-AD40-5F4E4D0AC4C6}
