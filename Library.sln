@@ -13,7 +13,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Library.Application", "Libr
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Library.UnitTests", "Library.UnitTests\Library.UnitTests.csproj", "{A99BF2EA-D620-4ECD-B45E-A942B9D5F434}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "LibraryPayment", "LibraryPayment", "{2E8FEFAA-00FE-44AA-884B-CB0753118AC1}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Library", "Library", "{2E8FEFAA-00FE-44AA-884B-CB0753118AC1}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
