@@ -1,18 +1,14 @@
 ﻿using Library.Core.Entities;
 using Library.Core.IRepositories;
+using Library.Infra.Persistence;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace Library.Infra.Repositories
+namespace Library.Infra.Persistence.Repositories
 {
     public class LoanRepository : ILoanRepository
     {
         private readonly LibraryDbContext _dbContext;
-        public LoanRepository(LibraryDbContext dbContext) 
+        public LoanRepository(LibraryDbContext dbContext)
         {
             _dbContext = dbContext;
         }
@@ -26,7 +22,7 @@ namespace Library.Infra.Repositories
         public async Task DeleteAsync(Loan loan)
         {
             loan.Delete();
-            
+
             await _dbContext.SaveChangesAsync();
         }
 
@@ -35,6 +31,7 @@ namespace Library.Infra.Repositories
             return await _dbContext.Loans
                 .Include(x => x.Book)
                 .Include(x => x.User)
+                .Where(x => !x.IsDeleted)
                 .ToListAsync();
         }
 
@@ -42,20 +39,20 @@ namespace Library.Infra.Repositories
         {
             return await _dbContext.Loans
                 .Include(x => x.Book)
-                .Where(x => x.UserId == userId && x.Book.IsDeleted)
+                .Where(x => x.UserId == userId && !x.Book.IsDeleted)
                 .ToListAsync();
         }
 
         public async Task<Loan> GetByIdAsync(int id)
         {
             return await _dbContext.Loans
-                .Include (x => x.Book)
+                .Include(x => x.Book)
                 .Include(x => x.User)
-                .FirstOrDefaultAsync(x => x.Id == id);
+                .FirstOrDefaultAsync(x => x.Id == id && !x.IsDeleted);
         }
 
         public async Task UpdateAsync(Loan loan)
-        { 
+        {
             await _dbContext.SaveChangesAsync();
         }
     }

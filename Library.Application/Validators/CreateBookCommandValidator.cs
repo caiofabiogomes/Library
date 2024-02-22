@@ -27,7 +27,7 @@ namespace Library.Application.Validators
                 .NotNull()
                 .Must(ValidateISBN)
                 .WithMessage("ISBN inválido!");
-             
+
         }
 
         private bool ValidateISBN(string isbn)

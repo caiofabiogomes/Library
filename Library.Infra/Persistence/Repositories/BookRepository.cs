@@ -1,13 +1,9 @@
 ﻿using Library.Core.Entities;
 using Library.Core.IRepositories;
+using Library.Infra.Persistence;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace Library.Infra.Repositories
+namespace Library.Infra.Persistence.Repositories
 {
     public class BookRepository : IBookRepository
     {

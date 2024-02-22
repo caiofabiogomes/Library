@@ -2,7 +2,6 @@
 using Library.Application.Commands.Book.DeleteBook;
 using Library.Application.Queries.Book.GetAll;
 using Library.Application.Queries.Book.GetBook;
-using Library.Core.Enums;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -23,9 +22,12 @@ namespace Library.API.Controllers
         [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Post([FromBody] CreateBookCommand command)
         {
-            await _mediator.Send(command);
+            var response = await _mediator.Send(command);
             
-            return StatusCode(201);
+            if(!response.IsSuccess)
+                return StatusCode(500, response.Message);
+
+            return StatusCode(201, response.Message);
         }
 
         [HttpDelete("{id}")]

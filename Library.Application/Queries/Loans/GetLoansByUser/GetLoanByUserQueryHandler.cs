@@ -3,11 +3,6 @@ using Library.Application.Abstractions;
 using Library.Application.ViewModels;
 using Library.Core.IRepositories;
 using MediatR;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Library.Application.Queries.Loans.GetLoansByUser
 {
@@ -23,10 +18,11 @@ namespace Library.Application.Queries.Loans.GetLoansByUser
         {
             var loans = await _loanRepository.GetAllByUserIdAsync(request.UserId);
 
-            if(loans == null)
+            if (loans == null)
                 return Result<List<GetLoansByUserViewModel>>.Success(new List<GetLoansByUserViewModel>());
 
             var viewModel = loans.Select(x => new GetLoansByUserViewModel(
+                x.Id,
                 x.UserId,
                 x.Status,
                 x.BookId,

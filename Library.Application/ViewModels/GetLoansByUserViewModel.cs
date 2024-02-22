@@ -1,17 +1,12 @@
-﻿using Library.Core.Entities;
-using Library.Core.Enums;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Library.Core.Enums;
 
 namespace Library.Application.ViewModels
 {
     public class GetLoansByUserViewModel
     {
-        public GetLoansByUserViewModel(int userId, ELoanStatus status, int bookId, string bookTitle, string author, string isbn, DateTime publicationDate, DateTime startDateLoan, DateTime endDateLoan, DateTime? finishDateLoan)
+        public GetLoansByUserViewModel(int loanId, int userId, ELoanStatus status, int bookId, string bookTitle, string author, string isbn, DateTime publicationDate, DateTime startDateLoan, DateTime endDateLoan, DateTime? finishDateLoan)
         {
+            LoanId = loanId;
             UserId = userId;
             Status = status;
             BookId = bookId;
@@ -24,6 +19,7 @@ namespace Library.Application.ViewModels
             FinishDateLoan = finishDateLoan;
         }
 
+        public int LoanId { get; private set; }
         public int UserId { get; private set; }
 
         public int BookId { get; private set; }

@@ -1,14 +1,15 @@
-﻿using Library.Core.IRepositories;
+﻿using Library.Core.IExternalServices;
+using Library.Core.IRepositories;
+using Library.Core.IServices;
 using Library.Infra.Auth;
-using Library.Infra.Repositories;
+using Library.Infra.Consumers;
+using Library.Infra.ExternalServices;
+using Library.Infra.MessageBus;
+using Library.Infra.Persistence;
+using Library.Infra.Persistence.Repositories;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Library.Infra.ContextConfiguration
 {
@@ -25,10 +26,19 @@ namespace Library.Infra.ContextConfiguration
         }
         public static IServiceCollection AddDependenciesInfra(this IServiceCollection services)
         {
-            services.AddScoped<IBookRepository,BookRepository>();
-            services.AddScoped<IUserRepository,UserRepository>();
-            services.AddScoped<ILoanRepository,LoanRepository>();
+            services.AddScoped<IBookRepository, BookRepository>();
+            services.AddScoped<IUserRepository, UserRepository>();
+            services.AddScoped<ILoanRepository, LoanRepository>();
             services.AddScoped<IAuthService, AuthService>();
+            services.AddScoped<IApiPaymentService, ApiPaymentService>();
+            services.AddScoped<IMessageBusService, MessageBusService>();
+            services.AddHostedService<PaymentApprovedConsumer>();
+
+            services.AddHttpClient<ApiPaymentService>(client =>
+            {
+                client.BaseAddress = new Uri("https://localhost:7147/");
+            });
+
 
             return services;
         }

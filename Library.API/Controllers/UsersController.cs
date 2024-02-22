@@ -2,9 +2,7 @@
 using Library.Application.Commands.User.LoginUser;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Swashbuckle.Examples;
 
 namespace Library.API.Controllers
 {
@@ -13,16 +11,14 @@ namespace Library.API.Controllers
     public class UsersController : ControllerBase
     { 
         private readonly IMediator _mediator;
+
         public UsersController(IMediator mediator)
         {
             _mediator = mediator;
         }
-
-
          
         [HttpPost("Post")]
         [AllowAnonymous]
-        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Post([FromBody] CreateUserCommand command)
         {
             await _mediator.Send(command);

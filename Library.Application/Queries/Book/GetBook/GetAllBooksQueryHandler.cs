@@ -2,13 +2,7 @@
 using Library.Application.Abstractions;
 using Library.Application.ViewModels;
 using Library.Core.IRepositories;
-using Library.Infra.Repositories;
 using MediatR;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Library.Application.Queries.Book.GetAll
 {

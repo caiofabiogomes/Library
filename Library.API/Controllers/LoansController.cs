@@ -4,7 +4,6 @@ using Library.Application.Queries.Loans.GetLoansByUser;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using System.Security.Claims;
 
 namespace Library.API.Controllers
 {
@@ -22,9 +21,15 @@ namespace Library.API.Controllers
         [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Post([FromBody] CreateLoanCommand command)
         {
-            await _mediator.Send(command);
+            var response = await _mediator.Send(command);
+            
+            if (!response.IsFound)
+                return NotFound(response.Message);
 
-            return StatusCode(201);
+            if(!response.IsSuccess)
+                return StatusCode(500, response.Message);
+
+            return StatusCode(201,response.Message);
         }
 
         [HttpPut("FinishLoan")]

@@ -1,9 +1,4 @@
 ﻿using Library.Core.Enums;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Library.Application.ViewModels
 {
@@ -22,7 +17,7 @@ namespace Library.Application.ViewModels
         public int UserId { get; private set; }
 
         public int BookId { get; private set; }
-        
+
         public DateTime StartDateLoan { get; private set; }
 
         public DateTime EndDateLoan { get; private set; }

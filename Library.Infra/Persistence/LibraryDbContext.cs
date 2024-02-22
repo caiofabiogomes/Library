@@ -2,14 +2,14 @@
 using Microsoft.EntityFrameworkCore;
 using System.Reflection;
 
-namespace Library.Infra
+namespace Library.Infra.Persistence
 {
     public class LibraryDbContext : DbContext
     {
         public LibraryDbContext(DbContextOptions<LibraryDbContext> options) : base(options)
         {
         }
-        public DbSet<User> Users {  get; set; }
+        public DbSet<User> Users { get; set; }
         public DbSet<Loan> Loans { get; set; }
         public DbSet<Book> Books { get; set; }
 

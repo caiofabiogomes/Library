@@ -3,11 +3,6 @@ using Library.Application.ViewModels;
 using Library.Core.IRepositories;
 using Library.Infra.Auth;
 using MediatR;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Library.Application.Commands.User.LoginUser
 {
@@ -28,7 +23,7 @@ namespace Library.Application.Commands.User.LoginUser
 
             var user = await _userRepository.GetByEmailAndPasswordAsync(request.Email, passwordHash);
 
-            if (user == null) 
+            if (user == null)
                 return Result<LoginUserViewModel>.NotFound("Usuário não encontrado!");
 
 
@@ -36,7 +31,7 @@ namespace Library.Application.Commands.User.LoginUser
 
             var viewModel = new LoginUserViewModel(user.Email, token);
 
-            return Result<LoginUserViewModel>.Success(viewModel,"Login realizado com sucesso!");
+            return Result<LoginUserViewModel>.Success(viewModel, "Login realizado com sucesso!");
         }
     }
 }

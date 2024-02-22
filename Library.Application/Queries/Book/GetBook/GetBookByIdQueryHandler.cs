@@ -2,18 +2,13 @@
 using Library.Application.ViewModels;
 using Library.Core.IRepositories;
 using MediatR;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Library.Application.Queries.Book.GetBook
 {
     public class GetBookByIdQueryHandler : IRequestHandler<GetBookByIdQuery, Result<GetBookViewModel>>
     {
         private readonly IBookRepository _bookRepository;
-        
+
         public GetBookByIdQueryHandler(IBookRepository bookRepository)
         {
             _bookRepository = bookRepository;

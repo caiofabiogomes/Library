@@ -1,13 +1,9 @@
 ﻿using Library.Core.Entities;
 using Library.Core.IRepositories;
+using Library.Infra.Persistence;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace Library.Infra.Repositories
+namespace Library.Infra.Persistence.Repositories
 {
     public class UserRepository : IUserRepository
     {
@@ -33,6 +29,7 @@ namespace Library.Infra.Repositories
         public async Task<List<User>> GetAllAsync()
         {
             return await _dbContext.Users
+                .Where(x => !x.IsDeleted)
                 .ToListAsync();
         }
 
@@ -49,7 +46,7 @@ namespace Library.Infra.Repositories
         }
 
         public async Task UpdateAsync(User user)
-        { 
+        {
             await _dbContext.SaveChangesAsync();
         }
     }

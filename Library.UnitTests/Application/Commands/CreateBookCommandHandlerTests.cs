@@ -1,21 +1,14 @@
 ﻿
 using Library.Application.Commands.Book.CreateBook;
-using Library.Application.Commands.Loan.CreteLoan;
 using Library.Core.IRepositories;
-using Library.Infra.Repositories;
 using Moq;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Library.UnitTests.Application.Commands
 {
     public class CreateBookCommandHandlerTests
     {
         [Fact]
-        public  async Task InputIsOk_Executed_ReturnSucess() 
+        public async Task InputIsOk_Executed_ReturnSucess()
         {
             //verificar se é para criar validações em caso de propriedades nulas
             //Arrange

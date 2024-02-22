@@ -1,25 +1,27 @@
 ﻿using Library.Application.Abstractions;
 using MediatR;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Library.Application.Commands.Loan.CreteLoan
 {
     public class CreateLoanCommand : IRequest<Result<Unit>>
     {
-        public CreateLoanCommand(int userId, int bookId, DateTime endDateLoan)
+        public CreateLoanCommand(int userId, int bookId, DateTime endDateLoan, decimal valuePerDay, decimal valuePerDayLate)
         {
             UserId = userId;
             BookId = bookId;
             EndDateLoan = endDateLoan;
+            ValuePerDay = valuePerDay;
+            ValuePerDayLate = valuePerDayLate;
         }
         public int UserId { get; private set; }
 
         public int BookId { get; private set; }
 
         public DateTime EndDateLoan { get; private set; }
+
+        public decimal ValuePerDay { get; private set; }
+
+        public decimal ValuePerDayLate { get; private set; }
+
     }
 }

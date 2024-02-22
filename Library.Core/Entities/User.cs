@@ -1,18 +1,13 @@
 ﻿using Library.Core.Enums;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Library.Core.Entities
 {
-    public class User: BaseEntity
+    public class User : BaseEntity
     {
-        public User() 
+        public User()
         {
         }
-        public User(string name, string email, string password, EUserRole role) 
+        public User(string name, string email, string password, EUserRole role)
         {
             Name = name;
             Email = email;
@@ -30,7 +25,7 @@ namespace Library.Core.Entities
 
         public List<Loan> Loans { get; private set; }
 
-        public bool IsAdmin() 
+        public bool IsAdmin()
         {
             return Role == EUserRole.Admin;
         }
