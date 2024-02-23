@@ -11,8 +11,7 @@ namespace Library.UnitTests.Application.Commands
         
         [Fact]
         public async Task InputIsOk_Executed_ReturnSucess() 
-        {
-            //Arrange
+        { 
             var loanRepository = new Mock<ILoanRepository>();
             var userRepository = new Mock<IUserRepository>();
             var bookRepository = new Mock<IBookRepository>();
@@ -26,11 +25,9 @@ namespace Library.UnitTests.Application.Commands
             var createLoanCommand = new CreateLoanCommand(1,1,DateTime.Now.AddDays(15),5,10);
 
             var createLoanCommandHandler = new CreateLoanCommandHandler(loanRepository.Object,userRepository.Object,bookRepository.Object);
-
-            // Act
+             
             var result = await createLoanCommandHandler.Handle(createLoanCommand, new CancellationToken());
-
-            // Assert
+             
             Assert.True(result.IsSuccess);
             Assert.Equal("Empréstimo criado com sucesso!", result.Message);
 
@@ -39,8 +36,7 @@ namespace Library.UnitTests.Application.Commands
 
         [Fact]
         public async Task InputUserIsNotFound_Executed_ReturnNotFound()
-        {
-            //Arrange
+        { 
             var loanRepository = new Mock<ILoanRepository>();
             var userRepository = new Mock<IUserRepository>();
             var bookRepository = new Mock<IBookRepository>();
@@ -52,11 +48,9 @@ namespace Library.UnitTests.Application.Commands
             var createLoanCommand = new CreateLoanCommand(1, 1, DateTime.Now.AddDays(15), 5, 10);
 
             var createLoanCommandHandler = new CreateLoanCommandHandler(loanRepository.Object, userRepository.Object, bookRepository.Object);
-
-            // Act
+             
             var result = await createLoanCommandHandler.Handle(createLoanCommand, new CancellationToken());
-
-            // Assert
+             
             Assert.False(result.IsFound);
             Assert.False(result.IsSuccess);
             Assert.Equal("cliente não encontrado ou foi removido",result.Message);
@@ -66,8 +60,7 @@ namespace Library.UnitTests.Application.Commands
 
         [Fact]
         public async Task InputBookIsNotFound_Executed_ReturnNotFound()
-        {
-            //Arrange
+        { 
             var loanRepository = new Mock<ILoanRepository>();
             var userRepository = new Mock<IUserRepository>();
             var bookRepository = new Mock<IBookRepository>();
@@ -79,11 +72,9 @@ namespace Library.UnitTests.Application.Commands
             var createLoanCommand = new CreateLoanCommand(1, 1, DateTime.Now.AddDays(15), 5, 10);
 
             var createLoanCommandHandler = new CreateLoanCommandHandler(loanRepository.Object, userRepository.Object, bookRepository.Object);
-
-            // Act
+             
             var result = await createLoanCommandHandler.Handle(createLoanCommand, new CancellationToken());
-
-            // Assert
+             
             Assert.False(result.IsFound);
             Assert.False(result.IsSuccess);
             Assert.Equal("livro não encontrado ou foi removido", result.Message);

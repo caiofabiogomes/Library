@@ -1,14 +1,8 @@
 ﻿using Library.Application.Commands.User.CreateUser;
-using Library.Core.Entities;
 using Library.Core.Enums;
 using Library.Core.IRepositories;
 using Library.Infra.Auth;
 using Moq;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Library.UnitTests.Application.Commands
 {
@@ -16,8 +10,7 @@ namespace Library.UnitTests.Application.Commands
     {
         [Fact]
         public async Task InputIsOk_Executed_ReturnSuccess()
-        {
-            // Arrange
+        { 
             var userRepository = new Mock<IUserRepository>();
             var authService = new Mock<IAuthService>();
             var password = "12401240";
@@ -26,11 +19,12 @@ namespace Library.UnitTests.Application.Commands
             authService.Setup(pr => pr.ComputeSha256Hash(password)).Returns(hashPassword);
 
             var createUserCommand = new CreateUserCommand("Usuario teste", "teste@email.com", password, EUserRole.Client);
-            var createUserCommandHandler = new CreateUserCommandHandler(userRepository.Object, authService.Object); 
-            // Act
-            var result = await createUserCommandHandler.Handle(createUserCommand, new CancellationToken());
+            var createUserCommandHandler = new CreateUserCommandHandler(userRepository.Object, authService.Object);  
 
-            // Assert
+
+            var result = await createUserCommandHandler.Handle(createUserCommand, new CancellationToken());
+            
+
             Assert.True(result.IsSuccess);
             Assert.Equal("Usuário criado com sucesso!", result.Message);
 

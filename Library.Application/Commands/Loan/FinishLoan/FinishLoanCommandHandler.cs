@@ -28,7 +28,7 @@ namespace Library.Application.Commands.Loan.FinishLoan
             if(loan.Status == ELoanStatus.Payed)
                 return Result<Unit>.Failure("O empréstimo já foi pago!");
 
-            var valueToPay = loan.ValueToPayToFinishLoanNow();
+            var valueToPay = loan.ValueToPayToFinishLoan(request.FinishDateLoan);
 
             if(valueToPay <= 0)
                 return Result<Unit>.Failure("O valor a ser pago deve ser maior que 0!");

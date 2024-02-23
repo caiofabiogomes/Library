@@ -1,16 +1,7 @@
-﻿using Library.Application.Queries.Book.GetAll;
-using Library.Application.Queries.Loans.GetLoansByUser;
+﻿using Library.Application.Queries.Loans.GetLoansByUser;
 using Library.Core.Entities;
-using Library.Core.Enums;
 using Library.Core.IRepositories;
 using Moq;
-using System;
-using System.Collections.Generic;
-using System.Collections.Immutable;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using static System.Reflection.Metadata.BlobBuilder;
 
 namespace Library.UnitTests.Application.Queries
 {

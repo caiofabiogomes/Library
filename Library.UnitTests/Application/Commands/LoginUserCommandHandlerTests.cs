@@ -3,11 +3,6 @@ using Library.Core.Enums;
 using Library.Core.IRepositories;
 using Library.Infra.Auth;
 using Moq;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Library.UnitTests.Application.Commands
 {
@@ -16,7 +11,7 @@ namespace Library.UnitTests.Application.Commands
         [Fact]
         public async Task ValidLoginCredentials_Executed_ReturnSuccess()
         {
-            // Arrange
+
             var authService = new Mock<IAuthService>();
             var userRepository = new Mock<IUserRepository>();
             var password = "12401240";
@@ -33,10 +28,10 @@ namespace Library.UnitTests.Application.Commands
             var loginCommand = new LoginUserCommand("teste@email.com", password);
             var loginCommandHandler = new LoginUserCommandHandler(authService.Object, userRepository.Object);
 
-            // Act
+
             var result = await loginCommandHandler.Handle(loginCommand, new CancellationToken());
 
-            // Assert
+
             Assert.True(result.IsSuccess);
             Assert.Equal("Login realizado com sucesso!", result.Message);
             Assert.Equal("teste@email.com", result.Data.Email);
@@ -49,7 +44,7 @@ namespace Library.UnitTests.Application.Commands
         [Fact]
         public async Task InvalidLoginCredentials_Executed_ReturnNotFound()
         {
-            // Arrange
+
             var authService = new Mock<IAuthService>();
             var userRepository = new Mock<IUserRepository>();
 
@@ -61,10 +56,10 @@ namespace Library.UnitTests.Application.Commands
             var loginCommand = new LoginUserCommand("teste@email.com", password);
             var loginCommandHandler = new LoginUserCommandHandler(authService.Object, userRepository.Object);
 
-            // Act
+
             var result = await loginCommandHandler.Handle(loginCommand, CancellationToken.None);
 
-            // Assert
+
             Assert.False(result.IsSuccess);
             Assert.False(result.IsFound);
             Assert.Equal("Usuário não encontrado!", result.Message);

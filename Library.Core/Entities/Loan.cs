@@ -19,6 +19,17 @@ namespace Library.Core.Entities
             ValuePerDayLate = valuePerDayLate;
             ValidateEndLoanDate();
         }
+        public Loan(int userId, int bookId, DateTime startDateLoan, DateTime endDateLoan, decimal valuePerDay, decimal valuePerDayLate)
+        {
+            UserId = userId;
+            BookId = bookId;
+            StartDateLoan = startDateLoan;
+            EndDateLoan = endDateLoan;
+            Status = ELoanStatus.InProgress;
+            ValuePerDay = valuePerDay;
+            ValuePerDayLate = valuePerDayLate;
+            ValidateEndLoanDate();
+        }
         public Loan(int userId, DateTime endDateLoan, Book book)
         {
             UserId = userId;
@@ -76,11 +87,11 @@ namespace Library.Core.Entities
             Status = ELoanStatus.PaymentPending;
         }
 
-        public decimal ValueToPayToFinishLoanNow()
+        public decimal ValueToPayToFinishLoan(DateTime finishDateLoan)
         {
             decimal valueToPay = 0;
 
-            int daysLate = (int)(DateTime.Now - EndDateLoan).TotalDays;
+            int daysLate = (int)(finishDateLoan - EndDateLoan).TotalDays;
             int loanDays = (int)(EndDateLoan - StartDateLoan).TotalDays;
 
             if (daysLate > 0)

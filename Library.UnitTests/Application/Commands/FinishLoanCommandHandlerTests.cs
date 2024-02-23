@@ -12,7 +12,7 @@ namespace Library.UnitTests.Application.Commands
         [Fact]
         public async Task InputIsOk_Executed_ReturnSucess()
         {
-            //Arrange  
+
             var Loan = new Loan(1, 1, DateTime.Now.AddDays(15), 5, 10);
             var loanRepository = new Mock<ILoanRepository>();
 
@@ -25,10 +25,10 @@ namespace Library.UnitTests.Application.Commands
             var finishLoanCommand = new FinishLoanCommand(1,finishDateLoan);
             var finishLoanCommandHandler = new FinishLoanCommandHandler(loanRepository.Object, apiPaymentServiceMock.Object);
 
-            // Act
+
             var result = await finishLoanCommandHandler.Handle(finishLoanCommand, new CancellationToken());
             
-            // Assert
+
             Assert.True(result.IsSuccess);
             Assert.Equal(ELoanStatus.PaymentPending,Loan.Status); 
             Assert.Equal("Pagamento agendado com sucesso!", result.Message);
@@ -39,7 +39,7 @@ namespace Library.UnitTests.Application.Commands
         [Fact]
         public async Task InputIsOk_Executed_NotFound_ReturnNotFound()
         {
-            //Arrange  
+
             var loanRepository = new Mock<ILoanRepository>();
 
             var finishDateLoan = DateTime.Now.AddDays(18);
@@ -49,10 +49,10 @@ namespace Library.UnitTests.Application.Commands
             var finishLoanCommand = new FinishLoanCommand(1, finishDateLoan);
             var finishLoanCommandHandler = new FinishLoanCommandHandler(loanRepository.Object, apiPaymentServiceMock.Object);
 
-            // Act
+
             var result = await finishLoanCommandHandler.Handle(finishLoanCommand, new CancellationToken());
 
-            // Assert
+
             Assert.False(result.IsFound);
             Assert.False(result.IsSuccess);
             Assert.Equal("Empréstimo não encontrado!", result.Message);
