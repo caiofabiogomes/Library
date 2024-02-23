@@ -29,10 +29,14 @@ namespace Library.Application.Queries.Loans.GetLoansByUser
                 x.Book.Title,
                 x.Book.Author,
                 x.Book.ISBN,
+                x.ValuePerDay,
+                x.ValuePerDayLate,
                 x.Book.PublicationDate,
                 x.StartDateLoan,
                 x.EndDateLoan,
-                x.FinishDateLoan
+                x.FinishDateLoan,
+                x.TotalValuePaid,
+                x.PaymentId
                 ))
                 .ToList();
 

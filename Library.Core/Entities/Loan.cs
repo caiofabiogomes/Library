@@ -60,9 +60,9 @@ namespace Library.Core.Entities
 
         public decimal ValuePerDayLate { get; private set; }
 
-        public decimal TotalValuePaid { get; private set; }
+        public decimal? TotalValuePaid { get; private set; }
 
-        public string PaymentId { get; private set; }
+        public string? PaymentId { get; private set; }
 
 
         public void FinishLoan(DateTime finishDate, decimal totalValuePaid, string paymentId)

@@ -24,7 +24,7 @@ namespace LibraryPayment.Application.Consumers
 
                 var inputModel = new ProcessPaymentInputModel(value);
 
-                paymentId = (await paymentService.ProcessPaymentCreditCard(inputModel)).Message;
+                paymentId = (await paymentService.ProcessPaymentCreditCard(inputModel)).Data;
             }
 
             return paymentId;
