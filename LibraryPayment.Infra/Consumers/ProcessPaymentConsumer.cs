@@ -1,16 +1,11 @@
-﻿using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
-using RabbitMQ.Client.Events;
-using RabbitMQ.Client;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Text.Json;
-using LibraryPayment.Infra.IServicesConsumers;
-using LibraryPayment.Core.DTOs;
+﻿using LibraryPayment.Core.DTOs;
 using LibraryPayment.Infra.EventsInputModels;
+using LibraryPayment.Infra.IServicesConsumers;
+using Microsoft.Extensions.Hosting;
+using RabbitMQ.Client;
+using RabbitMQ.Client.Events;
+using System.Text;
+using System.Text.Json;
 
 namespace LibraryPayment.Infra.Consumers
 {
@@ -20,12 +15,10 @@ namespace LibraryPayment.Infra.Consumers
         private const string _paymentsAprovvedQueue = "PaymentsApproved";
         private readonly IConnection _connection;
         private readonly IModel _channel;
-        private readonly IServiceProvider _serviceProvider;
         private readonly IProcessPaymentAction _processPaymentAction;
 
-        public ProcessPaymentConsumer(IServiceProvider serviceProvider, IProcessPaymentAction processPaymentAction)
+        public ProcessPaymentConsumer(IProcessPaymentAction processPaymentAction)
         {
-            _serviceProvider = serviceProvider;
             _processPaymentAction = processPaymentAction;
 
             var factory = new ConnectionFactory

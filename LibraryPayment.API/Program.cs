@@ -1,6 +1,5 @@
-using Microsoft.Extensions.Configuration;
-using LibraryPayment.Infra.InfraConfiguration;
 using LibraryPayment.Application.ApplicationConfiguration;
+using LibraryPayment.Infra.InfraConfiguration;
 
 var builder = WebApplication.CreateBuilder(args);
 

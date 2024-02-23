@@ -1,9 +1,10 @@
-﻿using LibraryPayment.Application.InputModels;
+﻿using LibraryPayment.Application.Abstractions;
+using LibraryPayment.Application.InputModels;
 
 namespace LibraryPayment.Application.Interfaces
 {
     public interface IProcessPaymentService
     {
-        Task<string> ProcessPaymentCreditCard(ProcessPaymentInputModel input);
+        Task<Result<string>> ProcessPaymentCreditCard(ProcessPaymentInputModel input);
     }
 }
