@@ -34,12 +34,6 @@ namespace Library.Infra.ContextConfiguration
             services.AddScoped<IMessageBusService, MessageBusService>();
             services.AddHostedService<PaymentApprovedConsumer>();
 
-            services.AddHttpClient<ApiPaymentService>(client =>
-            {
-                client.BaseAddress = new Uri("https://localhost:7147/");
-            });
-
-
             return services;
         }
     }
