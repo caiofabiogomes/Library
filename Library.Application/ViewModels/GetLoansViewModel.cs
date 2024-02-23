@@ -2,9 +2,9 @@
 
 namespace Library.Application.ViewModels
 {
-    public class GetLoansByUserViewModel
+    public class GetLoansViewModel
     {
-        public GetLoansByUserViewModel(int loanId, int userId, ELoanStatus status, int bookId, string bookTitle, string author, string isbn, DateTime publicationDate, DateTime startDateLoan, DateTime endDateLoan, DateTime? finishDateLoan)
+        public GetLoansViewModel(int loanId, int userId, ELoanStatus status, int bookId, string bookTitle, string author, string isbn, DateTime publicationDate, DateTime startDateLoan, DateTime endDateLoan, DateTime? finishDateLoan)
         {
             LoanId = loanId;
             UserId = userId;

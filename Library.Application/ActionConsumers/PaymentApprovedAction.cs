@@ -13,8 +13,6 @@ namespace Library.Application.ActionConsumers
             _serviceProvider = serviceProvider;
         }
 
-        //criarDto para esse metodo
-
         public async Task FinishLoan(int loanId, DateTime finishDateLoan, decimal totalPaid, string paymentId)
         {
             using (var scope = _serviceProvider.CreateScope())

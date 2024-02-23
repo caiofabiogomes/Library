@@ -1,22 +1,21 @@
-﻿
-using Library.Application.Abstractions;
+﻿using Library.Application.Abstractions;
 using Library.Application.ViewModels;
 using Library.Core.IRepositories;
 using MediatR;
 
-namespace Library.Application.Queries.Loans.GetLoansByUser
+namespace Library.Application.Queries.Loans.GetAllLoans
 {
-    public class GetLoanByUserQueryHandler : IRequestHandler<GetLoansByUserQuery, Result<List<GetLoansViewModel>>>
+    public class GetAllLoansQueryHandler : IRequestHandler<GetAllLoansQuery, Result<List<GetLoansViewModel>>>
     {
         private readonly ILoanRepository _loanRepository;
-        public GetLoanByUserQueryHandler(ILoanRepository loanRepository)
+        public GetAllLoansQueryHandler(ILoanRepository loanRepository)
         {
             _loanRepository = loanRepository;
         }
 
-        public async Task<Result<List<GetLoansViewModel>>> Handle(GetLoansByUserQuery request, CancellationToken cancellationToken)
+        public async Task<Result<List<GetLoansViewModel>>> Handle(GetAllLoansQuery request, CancellationToken cancellationToken)
         {
-            var loans = await _loanRepository.GetAllByUserIdAsync(request.UserId);
+            var loans = await _loanRepository.GetAllAsync();
 
             if (loans == null)
                 return Result<List<GetLoansViewModel>>.Success(new List<GetLoansViewModel>());

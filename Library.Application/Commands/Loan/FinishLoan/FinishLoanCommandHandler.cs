@@ -1,5 +1,6 @@
 ﻿using Library.Application.Abstractions;
 using Library.Core.DTOs;
+using Library.Core.Enums;
 using Library.Core.IExternalServices;
 using Library.Core.IRepositories;
 using MediatR;
@@ -24,7 +25,13 @@ namespace Library.Application.Commands.Loan.FinishLoan
             if (loan is null)
                 return Result<Unit>.NotFound("Empréstimo não encontrado!");
 
+            if(loan.Status == ELoanStatus.Payed)
+                return Result<Unit>.Failure("O empréstimo já foi pago!");
+
             var valueToPay = loan.ValueToPayToFinishLoanNow();
+
+            if(valueToPay <= 0)
+                return Result<Unit>.Failure("O valor a ser pago deve ser maior que 0!");
 
             var paymentInfoDto = new PaymentInfoDto(loan.Id, valueToPay, request.FinishDateLoan);
 

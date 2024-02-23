@@ -4,7 +4,7 @@ using MediatR;
 
 namespace Library.Application.Queries.Loans.GetLoansByUser
 {
-    public class GetLoansByUserQuery : IRequest<Result<List<GetLoansByUserViewModel>>>
+    public class GetLoansByUserQuery : IRequest<Result<List<GetLoansViewModel>>>
     {
         public GetLoansByUserQuery(int userId)
         {
