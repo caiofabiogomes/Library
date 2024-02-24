@@ -1,5 +1,4 @@
 ﻿using Library.Core.IntegrationEvents;
-using Library.Infra.IServiceActions;
 using Microsoft.Extensions.Hosting;
 using RabbitMQ.Client;
 using RabbitMQ.Client.Events;
@@ -13,14 +12,9 @@ namespace Library.Infra.Consumers
         private const string _paymentApprovedQueue = "PaymentsApproved";
         private readonly IConnection _connection;
         private readonly IModel _channel;
-        private readonly IServiceProvider _serviceProvider;
-        private readonly IPaymentApprovedAction _paymentApprovedAction;
 
-        public PaymentApprovedConsumer(IServiceProvider servicesProvider, IPaymentApprovedAction paymentApprovedAction)
+        public PaymentApprovedConsumer()
         {
-            _serviceProvider = servicesProvider;
-            _paymentApprovedAction = paymentApprovedAction;
-
             var factory = new ConnectionFactory
             {
                 HostName = "localhost"
@@ -41,17 +35,20 @@ namespace Library.Infra.Consumers
         {
             var consumer = new EventingBasicConsumer(_channel);
 
-            consumer.Received += async (sender, eventArgs) =>
+            consumer.Received += (sender, eventArgs) =>
             {
                 var paymentApprovedBytes = eventArgs.Body.ToArray();
                 var paymentApprovedJson = Encoding.UTF8.GetString(paymentApprovedBytes);
 
                 var paymentApprovedIntegrationEvent = JsonSerializer.Deserialize<PaymentApprovedIntegrationEvent>(paymentApprovedJson);
 
-                await _paymentApprovedAction.FinishLoan(paymentApprovedIntegrationEvent.LoanId,
-                                                        paymentApprovedIntegrationEvent.FinishDateLoan,
-                                                        paymentApprovedIntegrationEvent.TotalValuePaid,
-                                                        paymentApprovedIntegrationEvent.PaymentId);
+                var paymentApprovedEvent = new PaymentApprovedIntegrationEvent(paymentApprovedIntegrationEvent.LoanId,
+                                                                               paymentApprovedIntegrationEvent.FinishDateLoan,
+                                                                               paymentApprovedIntegrationEvent.PaymentId,
+                                                                               paymentApprovedIntegrationEvent.TotalValuePaid);
+
+
+                OnPaymentApproved(paymentApprovedEvent);
 
                 _channel.BasicAck(eventArgs.DeliveryTag, false);
             };
@@ -59,6 +56,13 @@ namespace Library.Infra.Consumers
             _channel.BasicConsume(_paymentApprovedQueue, false, consumer);
 
             return Task.CompletedTask;
+        }
+
+        public event EventHandler<PaymentApprovedIntegrationEvent> PaymentApproved;
+
+        protected virtual void OnPaymentApproved(PaymentApprovedIntegrationEvent e)
+        {
+            PaymentApproved?.Invoke(this, e);
         }
     }
 }

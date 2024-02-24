@@ -1,7 +1,9 @@
 using FluentValidation.AspNetCore;
 using Library.API.Filters;
+using Library.Application.ActionConsumers;
 using Library.Application.ApplicationConfiguration;
 using Library.Application.Validators;
+using Library.Infra.Consumers;
 using Library.Infra.ContextConfiguration;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
@@ -65,6 +67,8 @@ builder.Services
         (Encoding.UTF8.GetBytes(builder.Configuration["Jwt:Key"]))
       };
   });
+
+
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
@@ -72,6 +76,7 @@ builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
 
+await app.Services.StartPaymentProcessingAsync();
 
 
 

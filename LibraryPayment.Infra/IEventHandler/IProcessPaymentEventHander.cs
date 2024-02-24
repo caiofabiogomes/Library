@@ -1,6 +1,6 @@
 ﻿namespace LibraryPayment.Infra.IServicesConsumers
 {
-    public interface IProcessPaymentAction
+    public interface IProcessPaymentEventHander
     {
         Task<string> ProcessPayment(decimal value);
     }

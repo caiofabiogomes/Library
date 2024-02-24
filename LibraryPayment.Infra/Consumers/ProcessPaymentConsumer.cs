@@ -15,9 +15,9 @@ namespace LibraryPayment.Infra.Consumers
         private const string _paymentsAprovvedQueue = "PaymentsApproved";
         private readonly IConnection _connection;
         private readonly IModel _channel;
-        private readonly IProcessPaymentAction _processPaymentAction;
+        private readonly IProcessPaymentEventHander _processPaymentAction;
 
-        public ProcessPaymentConsumer(IProcessPaymentAction processPaymentAction)
+        public ProcessPaymentConsumer(IProcessPaymentEventHander processPaymentAction)
         {
             _processPaymentAction = processPaymentAction;
 

@@ -5,11 +5,11 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace LibraryPayment.Application.Consumers
 {
-    public class ProcessPaymentAction : IProcessPaymentAction
+    public class ProcessPaymentEventHander : IProcessPaymentEventHander
     {
         private readonly IServiceProvider _serviceProvider;
         
-        public ProcessPaymentAction(IServiceProvider serviceProvider) 
+        public ProcessPaymentEventHander(IServiceProvider serviceProvider) 
         {
             _serviceProvider = serviceProvider;
         }

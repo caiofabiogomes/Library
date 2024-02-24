@@ -11,7 +11,7 @@ namespace LibraryPayment.Application.ApplicationConfiguration
         public static IServiceCollection AddDependenciesApplication(this IServiceCollection services)
         {
             services.AddScoped<IProcessPaymentService, ProcessPaymentService>();
-            services.AddSingleton<IProcessPaymentAction, ProcessPaymentAction>();
+            services.AddSingleton<IProcessPaymentEventHander, ProcessPaymentEventHander>();
 
             return services;
         }
