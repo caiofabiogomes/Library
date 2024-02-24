@@ -56,11 +56,8 @@ O projeto está estruturado da seguinte forma:
     dotnet ef database update
     ```
 
-6. **Executar Projeto**: Execute o projeto principal.
-
-    ```bash
-    dotnet run --project Library.API
-    ```
+6. **Executar Projeto**: Execute o projeto Library.API e LibraryPayment.API.
+ 
 
 7. **Executar Testes**: Para executar os testes unitários, utilize o seguinte comando:
 
