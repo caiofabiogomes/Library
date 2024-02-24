@@ -37,7 +37,7 @@ O projeto está estruturado da seguinte forma:
 1. **Clonar o Repositório**: Clone este repositório em sua máquina local.
 
     ```bash
-    git clone https://github.com/seu-usuario/library.git
+    git clone https://github.com/caiogomesxx/library.git
     ```
 
 2. **Instalar Dependências**: Certifique-se de ter o .NET 6.0 SDK instalado em sua máquina. Em seguida, instale as dependências do projeto.
